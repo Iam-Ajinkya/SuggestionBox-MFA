@@ -49,5 +49,14 @@
     <input type="email" name="_replyto" placeholder="Your Email (optional)">
     <button type="submit">Send Suggestion</button>
   </form>
+
+  <script>
+    // Clear textarea after successful submission
+    const form = document.getElementById("suggestionForm");
+    form.addEventListener("submit", function () {
+      setTimeout(() => form.reset(), 100); 
+    });
+  </script>
+  
 </body>
 </html>
