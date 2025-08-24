@@ -1,16 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Suggestion Box</title>
-    <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
-  </head>
-  <body>
-    <h2 style="text-align:center;">💬 Suggestion Box</h2>
-    <div class="commentbox"></div>
-
-    <script>
-      commentBox('5673574748651520-proj'); // your project ID
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Suggestion Box</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    textarea {
+      resize: vertical;
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      height: 150px;
+    }
+    input, button {
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h2>💬 Suggestion Box</h2>
+  <form action="https://formspree.io/f/xblarowy" method="POST">
+    <textarea name="message" placeholder="Drop your suggestion here..." required></textarea>
+    <input type="text" name="name" placeholder="Your Name (optional)">
+    <input type="email" name="_replyto" placeholder="Your Email (optional)">
+    <button type="submit">Send Suggestion</button>
+  </form>
+</body>
 </html>
