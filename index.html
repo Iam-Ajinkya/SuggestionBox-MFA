@@ -47,7 +47,8 @@
 </head>
 <body>
   <h2>💬 Suggestion Box</h2>
-  <form action="https://formspree.io/f/xblarowy" method="POST">
+  <form id="suggestionForm" action="https://formspree.io/f/xblarowy" method="POST" autocomplete="off">
+
     <textarea name="message" placeholder="Drop your suggestion here..." required></textarea>
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="_replyto" placeholder="Your Email (optional)">
@@ -55,12 +56,26 @@
   </form>
 
   <script>
-    // Clear textarea after successful submission
-    const form = document.getElementById("suggestionForm");
-    form.addEventListener("submit", function () {
-      setTimeout(() => form.reset(), 100); 
+  (function () {
+    const form = document.getElementById('suggestionForm');
+
+    function clearForm() {
+      if (!form) return;
+      form.reset(); // clears all fields
+      const ta = form.querySelector('textarea[name="message"]');
+      if (ta) ta.value = ''; // extra safety
+    }
+
+    // Fires on normal load AND when coming back from the thank-you page
+    window.addEventListener('pageshow', function (e) {
+      // If page is restored from the back/forward cache OR detected as back/forward nav, clear it
+      if (e.persisted) clearForm();
+      const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      if (nav && nav.type === 'back_forward') clearForm();
     });
-  </script>
+  })();
+</script>
+
   
 </body>
 </html>
